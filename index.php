@@ -31,6 +31,7 @@ if(isset($_SERVER['PATH_INFO'])){
     $filename='login';
 }
 
+/*一定要学会使用模板语法，requirejs*/
 
 include('./views/'.$pathname.'/'.$filename.'.html');
 
