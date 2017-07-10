@@ -1,0 +1,28 @@
+    <!--<script src="/public/assets/jquery/jquery.min.js"></script>
+    <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/public/assets/nprogress/nprogress.js"></script>
+    <script src="/public/assets/echarts/echarts.min.js"></script>
+    <script src="/public/js/common.js"></script>-->
+
+
+    <!--因为模块化思想就是管理各种的js文件，所以要把requejs书写在这个文件中-->
+    <!--jqueryjs的语法就是先书写requirejs,然后是配置，最后是入口js-->
+    <script src="/public/assets/require/require.js"></script>
+    <!--config配置文件单独放置，其实也可以不用单独放置，直接书写在下面也可以-->
+    <script src="/public/js/config.js"></script>
+    <!--<script>
+        require.config({
+    baseUrl:'/public/assets',
+    paths:{
+        'jquery':'jquery/jquery.min',
+        'template':'artTemplate/template-web',
+        'common':'../js/common',
+        'cookie':'jquery-cookie/jquery.cookie',
+        'login':'../js/login'
+    }
+});
+    </script>-->
+    <!--书写入口的js文件-->
+    <script>
+        require(['common']);
+    </script>

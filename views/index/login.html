@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的博学谷</title>
+        <?php include('/views/common/style.html') ?>
+</head>
+<body>
+    <!-- 登录 -->
+    <div class="login">
+        <div class="login-wrap">
+            <div class="avatar">
+                <img src="./uploads/monkey.png" class="img-circle" alt="">
+            </div>
+            <form action="" id='loginForm' class="col-xs-offset-1 col-xs-10">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <input type="text" name='tc_name' class="form-control" placeholder="用户名">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <input type="password" name='tc_pass' class="form-control" placeholder="密码">
+                </div>
+                <button id='btn' type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
+                <!--<button id='btn' type="button" class="btn btn-lg btn-primary btn-block">登 录</button>-->
+            </form>
+        </div>
+    </div>
+    <?php include('/views/common/script.html') ?>
+
+    <!--登录页面还有自己独有的JS文件-->
+    <script>
+        require(['login']);
+    </script>
+
+    <!--<script src="/public/assets/jquery/jquery.min.js"></script>
+    <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>-->
+    <!--<script>
+        //实现登录功能
+        $('#btn').click(function(){
+            console.log(1);
+            var a=$('#loginForm').serialize();
+            console.log(a);
+            
+            $.ajax({
+                type:'post',
+                //url:'http://api.studyit.com/login',//跨域请求
+                url:'/api/login',
+                data:$('#loginForm').serialize(),//ajax支持表单序列化的数据
+                dataType:'json',
+                success:function(data){
+                    console.log(data);
+                    
+                    if(data.code==200){
+                        //应该把data中的用户登录信息保存到cookie中即可实现页面数据共享
+                        location.href='/index.html'
+                    }
+                }
+            });
+            return false;
+        });
+    </script>-->
+
+    <script>
+        // $('#btn').on('click',function(){
+        //     $.ajax({
+        //         type:'post',
+        //         url:'/api/login',
+        //         data:$('#loginForm').serialize(),
+        //         dataType:'json',
+        //         success:function(data){
+        //             console.log(data);
+        //             if(data.code==200){
+        //                 location.href='index.php/index/index';
+        //                 //这时候刷新页面会看到地址栏中有index.php,一般情况下要让它隐藏，只需将.htaccess文件放到文件的跟目录下
+        //             }
+        //         }
+        //     });
+        //     return false;
+        //     //去掉了 type="button"，type 就变成默认的 "submit"，区别是 type="submit" 点击以后默认会提交所在的表单，
+        //     // type="button" 没有默认行为。因为你要自定义行为，所以建议你还是加上。
+        // });
+    </script>
+</body>
+</html>
