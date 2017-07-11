@@ -35,4 +35,6 @@ if(isset($_SERVER['PATH_INFO'])){
 
 include('./views/'.$pathname.'/'.$filename.'.html');
 
+/*根据获取的路径和文件名称从服务器获取到对应的页面，再经过这个php返回给浏览器*/
+
 ?>

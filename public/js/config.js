@@ -7,6 +7,13 @@ require.config({
         'cookie':'jquery-cookie/jquery.cookie',
         'login':'../js/login',
         'teacher_list':'../js/teacher-list',
-        'bootstrap':'bootstrap/js/bootstrap.min'
+        'bootstrap':'bootstrap/js/bootstrap.min',
+        'teacher_add':'../js/teacher-add',
+        'util':'../js/util'
+    },
+    shim:{
+        'bootstrap':{
+            'deps':['jquery']
+        }
     }
 });
