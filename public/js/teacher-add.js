@@ -1,4 +1,4 @@
-define(['jquery', 'template', 'util'], function ($, template, util) {
+define(['jquery', 'template', 'util','datepicker','language'], function ($, template, util) {
 
     /*根据a链接跳转路径设置所点击菜单的高亮效果*/
     // $('.aside .navs a[href="'+location.pathname+'"]').addClass('active');

@@ -10,11 +10,16 @@ require.config({
         'bootstrap':'bootstrap/js/bootstrap.min',
         'teacher_add':'../js/teacher-add',
         'util':'../js/util',
-        'index':'../js/index'
+        'index':'../js/index',
+        'datepicker':'bootstrap-datepicker/js/bootstrap-datepicker.min',
+        'language':'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min'
     },
     shim:{
         'bootstrap':{
             'deps':['jquery']
+        },
+        'language':{
+            'deps':['jquery','datepicker ']
         }
     }
 });
