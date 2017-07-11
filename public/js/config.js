@@ -9,7 +9,8 @@ require.config({
         'teacher_list':'../js/teacher-list',
         'bootstrap':'bootstrap/js/bootstrap.min',
         'teacher_add':'../js/teacher-add',
-        'util':'../js/util'
+        'util':'../js/util',
+        'index':'../js/index'
     },
     shim:{
         'bootstrap':{

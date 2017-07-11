@@ -1,3 +1,4 @@
+/*这个js模块放置的都是工具函数*/
 define(['jquery'],function($){
     //获取地址栏中指定的信息
     function qs(key,param){
@@ -14,9 +15,13 @@ define(['jquery'],function($){
     }
     return obj[key]
 }
-
+/*设置导航菜单高亮*/
+function setMenu(pathname){
+    $('.aside .navs a[href="'+pathname+'"]').addClass('active');
+}
 return {
-    qs:qs
+    qs:qs,
+    setMenu:setMenu
 }
     
 });

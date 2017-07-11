@@ -1,4 +1,12 @@
 define(['jquery', 'template', 'util'], function ($, template, util) {
+
+    /*根据a链接跳转路径设置所点击菜单的高亮效果*/
+    // $('.aside .navs a[href="'+location.pathname+'"]').addClass('active');
+    /*显示讲师管理下面的添加页面时（index/addoredit），应该还是讲师管理显示高亮。再使用以上方法就行不通了必须要写死才行，*/
+    // $('.aside .navs a[href="/teacher/list"]').addClass('active');
+    util.setMenu('/teacher/list');
+    // console.log(location.pathname);//   /teacher/list
+
     /*添加或编辑讲师信息*/
 
     /*分析：编辑和添加使用同一个表单模板，并且提交的地址也是一样的，点击提交按钮都要渲染到公用表单模板，

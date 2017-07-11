@@ -1,4 +1,6 @@
-define(['jquery', 'template','bootstrap'], function ($, template) {
+define(['jquery', 'template','util','bootstrap'], function ($, template,util) {
+    /*根据a链接跳转路径设置所点击菜单的高亮效果*/
+    util.setMenu(location.pathname);
     /*因为主页面的教师管理使用的a链接有默认跳转功能，所以跳转到指定页面的时候就显示列表数据*/
     $.ajax({
         type: 'get',
