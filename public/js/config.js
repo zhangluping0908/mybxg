@@ -12,7 +12,9 @@ require.config({
         'util':'../js/util',
         'index':'../js/index',
         'datepicker':'bootstrap-datepicker/js/bootstrap-datepicker.min',
-        'language':'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min'
+        'language':'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
+        'validate':'validate/jquery-validate.min',
+        'form':'jquery-form/jquery.form'
     },
     shim:{
         'bootstrap':{
@@ -20,6 +22,9 @@ require.config({
         },
         'language':{
             'deps':['jquery','datepicker ']
+        },
+        'validate':{
+            'deps':['jquery']
         }
     }
 });

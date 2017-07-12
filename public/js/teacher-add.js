@@ -1,4 +1,6 @@
-define(['jquery', 'template', 'util','datepicker','language'], function ($, template, util) {
+define(['jquery', 'template', 'util', 'datepicker', 'language', 'validate','form'], function ($, template, util) {
+
+    /*'form'文件提供表单请求方法*/
 
     /*根据a链接跳转路径设置所点击菜单的高亮效果*/
     // $('.aside .navs a[href="'+location.pathname+'"]').addClass('active');
@@ -19,7 +21,6 @@ define(['jquery', 'template', 'util','datepicker','language'], function ($, temp
     var tcId = util.qs('tc_id', location.search);
     // console.log(tcId);
     if (tcId) {
-
         $.ajax({
             type: 'get',
             url: '/api/teacher/edit',
@@ -31,19 +32,17 @@ define(['jquery', 'template', 'util','datepicker','language'], function ($, temp
                 // console.log(data.result);
                 /*因为讲师添加不能写死，需要一个有别于添加功能的属性，但是data.result中又没有，所以我们可以给它添加一个属性*/
                 data.result.tc_operator = '编辑讲师';
-                console.log(data.result);
-
+                // console.log(data.result);
                 var html = template('teacherTpl', data.result);//没调用，好大的坑啊
 
                 $('#teacherInfo').html(html);
-
-                $('#swcbtn').click(function () {
-                    /*因为按钮是渲染出来的，所以应该是等有数据了才能点击按钮提交*/
-                    /*编辑时提交----更新数据发送给服务器，但是必须得知道是更新谁的数据，所以页面中要添加一个tc_id*/
+                // $('#swcbtn').click(function () {
+                //     /*因为按钮是渲染出来的，所以应该是等有数据了才能点击按钮提交*/
+                //     /*编辑时提交----更新数据发送给服务器，但是必须得知道是更新谁的数据，所以页面中要添加一个tc_id*/
+                //     submitForm('/api/teacher/update');
+                //     /*模板中竟然忘记写{{}}*/
+                // });
                     submitForm('/api/teacher/update');
-                    /*模板中竟然忘记写{{}}*/
-                });
-
             }
         });
     } else {
@@ -51,13 +50,68 @@ define(['jquery', 'template', 'util','datepicker','language'], function ($, temp
         var html = template('teacherTpl', { tc_operator: '添加讲师', tc_gender: 0 });
         /*添加默认文字/选项*/
         $('#teacherInfo').html(html);
+        // $('#swcbtn').click(function () {
+        //     /*添加时提交--*/
+        //     submitForm('/api/teacher/add');
 
-        $('#swcbtn').click(function () {
-            /*添加时提交--*/
-            submitForm('/api/teacher/add')
+        // });
+        submitForm('/api/teacher/add');
+
+    }
+
+    function submitForm(url){
+                $('#addForm').validate({
+            sendForm: false,
+            /*表单都有效时才触发*/
+            valid: function () {
+                // alert(12)
+                // submitForm('/api/teacher/add');
+                $('#addForm').ajaxSubmit({
+                    type:'post',
+                    dataType:'json',
+                    url:url,
+                    success:function(data){
+                        console.log(data);
+                        if(data.code==200){
+                            location.href='/teacher/list';
+                        }
+                        
+                    }
+                });
+
+            },
+            /*提示信息的描述*/
+            'description': {
+                tcname: {
+                    required: '用户名不能为空',
+                },
+                tcpass: {
+                    required: '密码不能为空',
+                    pattern: '密码只能是6位数字'
+                },
+                tcjoindate: {
+                    required: '入职时间必须选择'
+                }
+            }
         });
     }
 
+    // function submitForm(url) {
+    //     console.log($('#addForm').serialize());
+    //     /*ajax将数据发送给服务器*/
+    //     $.ajax({
+    //         type: 'post',
+    //         url: url,
+    //         data: $('#addForm').serialize(),
+    //         dataType: 'json',
+    //         success: function (data) {
+    //             // console.log(data);
+    //             if (data.code == 200) {
+    //                 location.href = '/teacher/list';
+    //             }
+    //         }
+    //     });
+    // }
 
     // /*绑定表单提交事件*/
     // $('#swcbtn').click(function () {
@@ -70,26 +124,4 @@ define(['jquery', 'template', 'util','datepicker','language'], function ($, temp
     //         submitForm('/api/teacher/add')
     //     }
     // });
-
-
-    function submitForm(url) {
-        console.log($('#addForm').serialize());
-        /*ajax将数据发送给服务器*/
-        $.ajax({
-            type: 'post',
-            url: url,
-            data: $('#addForm').serialize(),
-            dataType: 'json',
-            success: function (data) {
-                // console.log(data);
-                if (data.code == 200) {
-                    location.href = '/teacher/list';
-
-                }
-            }
-        });
-
-    }
-
-
 });
